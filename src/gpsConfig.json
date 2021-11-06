@@ -1,0 +1,4 @@
+{
+    "gpsConfigBaud" : 57600,
+    "gpsConfigPort" : "COM2"
+} 

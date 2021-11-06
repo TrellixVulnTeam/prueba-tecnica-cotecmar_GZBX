@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor datos GPS - PRUEBA COTECMAR - CRISTIAN VALDEZ</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" /> -->
+    <link rel="stylesheet" href="../styles/index.css">
+
+    <script> 
+      const {ipcRenderer}  = require("electron");
+      
+      var timer = window.setInterval(()=>{
+        document.getElementById("logsDataRecv").style.backgroundColor = "red";
+      },2000);
+      // electron.ipcRenderer.send('variable-request', ['somevar', 'anothervar']);
+      ipcRenderer.on('details', (e,conDetails)=>{
+        document.getElementById("portName").innerHTML = conDetails.port;
+        document.getElementById("portBaud").innerHTML = conDetails.bauds;
+      });
+
+      ipcRenderer.on('data',(evt, gpsData) => {
+        document.getElementById("lonData").innerHTML = gpsData.longitud;
+        document.getElementById("latData").innerHTML = gpsData.latitud;
+        document.getElementById("gpsVel").innerHTML = gpsData.velocidad;
+        document.getElementById("hourData").innerHTML = gpsData.horaData
+        document.getElementById("dateData").innerHTML = gpsData.fechaData
+
+        document.getElementById("logsDataRecv").style.backgroundColor = "green";
+        window.clearTimeout(timer);
+
+        timer = window.setInterval(()=>{
+          document.getElementById("logsDataRecv").style.backgroundColor = "red";
+        },2000);
+      });
+      
+      ipcRenderer.on('api-status', (e,apistatus)=>{
+        let c = apistatus;
+        if(c == 1){
+          document.getElementById("errorLogs").style.color = "green";
+          document.getElementById("errorLogs").innerHTML = "Datos enviados a la API";
+        }else{
+          document.getElementById("errorLogs").style.color = "red";
+          document.getElementById("errorLogs").innerHTML = "Error: conexión con la API";
+        }
+      });
+      </script>
+
+  </head>
+  <body>
+    <div id="generalContainer">
+      
+      <div id="gpsDataContainer">
+        
+        <div class="gpsDataContainer" id="gpsCoords">
+          <p>Lon: <br><span id="lonData">--</span></p>
+          <p>Lat: <br><span id="latData">--</span></p>
+        </div>
+
+        <div class="gpsDataContainer"><span id="gpsVel"></span> K/h</div>
+        
+        <div class="gpsDataContainer" id="gpsDate">
+          <p>Fecha:<br><span id="dateData">--</span></p>
+          <p>Hora:<br><span id="hourData">--</span></p>
+        </div>
+
+      </div>
+      <div id="logs">
+        <p>Conectado al puerto <span id="portName"></span> Con una velocidad de <span id="portBaud"></span> <br> Use el archivo gpsConfig.json para modificar esto.</p>
+      </div>
+
+      <div id="logsDataRecv"> </div>
+
+      <div id="errorLogs"></div>
+    </div>
+    
+
+    <!-- <script type="text/javascript" src="./programa.js"> </script> -->
+    
+      
+  </body>
+</html>
+
+
+
+
+

@@ -1,0 +1,83 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+}
+div#generalContainer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* background-color: black; */
+}
+
+div#gpsDataContainer{
+    width: 100%;
+    height: 270px;
+    float: left;
+    margin-top: 10px;
+}
+
+div.gpsDataContainer{
+    color: white;
+    font-weight: bold;
+    font-size: 36px;
+    width: 230px;
+    height: 230px;
+    float: left;
+    margin-left: 15px;
+    border-radius: 50%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+div.gpsDataContainer p{
+    width: 100%;
+    float: left;
+    margin-top: 2px;;
+}
+div.gpsDataContainer:nth-child(1){
+    font-size: 20px;
+}
+
+div.gpsDataContainer:nth-child(3){
+    font-size: 24px;
+}
+
+div#logs{
+    width: 100%;
+    height: 70px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: aqua;
+}
+
+div#logsDataRecv{
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-left: calc((100% - 10px)/2);
+    background-color: red;
+}
+
+div#errorLogs{
+    width: 100%;
+    height: 70px;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: red;
+}

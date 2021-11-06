@@ -1,0 +1,21 @@
+{
+  "name": "prueba-cotecmar1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron src/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^15.3.0",
+    "electron-rebuild": "^3.2.3"
+  },
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1",
+    "node-gyp": "^8.4.0",
+    "serialport": "^9.2.5"
+  }
+}
